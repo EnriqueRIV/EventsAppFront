@@ -1,0 +1,20 @@
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  z-index: 10;
+  background-color: var(--eri-color-background-primary);
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.footerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--eri-color-background-primary);
+  border-radius: 10px;
+  padding: 0 10px;
+}

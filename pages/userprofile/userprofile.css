@@ -1,0 +1,68 @@
+#userprofile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+#userProfileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: auto;
+  margin: 20px;
+  border-radius: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0px 0px 57px -10px rgba(0, 0, 0, 0.75);
+  background-color: var(--eri-color-background-secondary);
+}
+#profileContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+  width: auto;
+  margin: 20px;
+}
+
+.imgAvatarContainer {
+  width: auto;
+}
+
+.imgAvatarContainer > img {
+  border-radius: 100px;
+  width: 100px;
+  border: 1px solid var(--eri-color-background-button);
+  background-color: var(--eri-color-background-secondary);
+  margin: 8px;
+}
+
+.dataProfileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  height: 130px;
+  width: auto;
+  gap: 5px;
+  padding: 5px 20px;
+}
+
+.dataProfileContainer span {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.optionsButtonsContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.optionsButtonsContainer > button {
+  border-radius: 10px;
+  padding: 5px;
+  border: 1px solid var(--eri-color-border);
+  cursor: pointer;
+}

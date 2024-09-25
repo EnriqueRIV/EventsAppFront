@@ -1,0 +1,125 @@
+header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  font-weight: 600;
+  font-size: 1.5rem;
+  background-color: var(--eri-color-background-disfued);
+  z-index: 10;
+}
+.titleH1 {
+  color: var(--eri-color-tipography-body);
+  text-shadow: 0 2px 0 #ccc, 0 3px 0 #c9c9c9, 0 4px 0 #bbb, 0 5px 0 #b9b9b9,
+    0 6px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
+    0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2),
+    0 20px 20px rgba(0, 0, 0, 0.15);
+}
+
+.navBar {
+  width: 100%;
+}
+.navBar > ul {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navBar > ul > li {
+  padding: 5px 10px;
+}
+
+#logoEventgator {
+  width: 70px;
+  position: relative;
+}
+
+#loginLi.display {
+  display: block;
+  visibility: visible;
+}
+
+#loginLi {
+  display: none;
+  visibility: hidden;
+}
+
+#userOptions {
+  visibility: hidden;
+  display: none;
+  position: relative;
+  width: 148px;
+  height: 62px;
+}
+
+#userOptions.display {
+  visibility: visible;
+  display: block;
+}
+
+.navLink {
+  padding: 10px 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.navLink:hover {
+  display: flex;
+  justify-content: end;
+  background-color: var(--eri-color-background-secondary);
+}
+.navLink:focus {
+  text-decoration: underline;
+  background-color: var(--eri-color-background-secondary);
+  font-size: 1.5rem;
+  transition: background-color 0.5s 0.1s ease-in-out, font-size 0.5s;
+}
+
+.navLinkMobile {
+  display: none;
+}
+@media screen and (width <= 768px) {
+  header {
+    font-size: 1.1rem;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .navLink:focus {
+    font-size: 1.1rem;
+  }
+  #logoEventgator {
+    width: 50px;
+  }
+}
+@media screen and (width <= 426px) {
+  .titleH1 {
+    display: none;
+  }
+  .navLinkMobile {
+    display: flex;
+  }
+  .navLink > p {
+    display: none;
+  }
+
+  .navLinkMobile:hover {
+    display: flex;
+    justify-content: end;
+    background-color: var(--eri-color-background-secondary);
+  }
+  .navLinkMobile:focus {
+    text-decoration: underline;
+    background-color: var(--eri-color-background-secondary);
+    font-size: 17px;
+    transition: background-color 0.5s 0.1s ease-in-out, font-size 0.5s;
+  }
+  #logoEventgator {
+    width: 35px;
+  }
+}

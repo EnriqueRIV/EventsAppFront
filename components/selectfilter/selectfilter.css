@@ -1,0 +1,10 @@
+.selectOrder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+.orderby {
+  max-width: 130px;
+}

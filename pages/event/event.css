@@ -1,0 +1,119 @@
+#eventContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0 40px;
+}
+
+#eventInfoContainer {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--eri-color-background-disfued);
+  border-radius: 50px 0 0 50px;
+}
+
+.imgContainer > img {
+  width: 350px;
+  border-radius: 50px;
+}
+
+.eventDetailsContainer {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.btnsContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.updateeventbtn,
+#deleteeventbtn {
+  max-width: 10%;
+  min-width: 75px;
+}
+
+.eventAsisContainer {
+  width: 8rem;
+  height: 7.9rem;
+}
+
+.asisContainer {
+  border: 4px solid var(--eri-color-background-button-hard);
+  border-radius: 20px 0 0 20px;
+  border-style: ridge;
+  margin: 5px 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: var(--eri-color-background-button-hard)
+    var(--eri-color-background-button);
+}
+
+.asisContainer > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.asisContainer > li > img {
+  width: 30px;
+}
+#attendeeOption {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.clipped-borderMax {
+  overflow: hidden;
+  display: block;
+  background: linear-gradient(grey, lightgrey);
+  width: 350px;
+  height: 100%;
+  border-radius: 50px;
+  transition: transform 0.2s;
+}
+
+.imgEventMax {
+  width: 98%;
+  height: 95%;
+  object-fit: cover;
+  border-radius: 50px;
+  position: relative;
+  top: 4px;
+}
+@media screen and (width <= 769px) {
+  #eventInfoContainer {
+    display: flex;
+    width: 350px;
+    height: 100%;
+    gap: 10px;
+    border-radius: 50px 50px 0 0;
+    padding-bottom: 10px;
+  }
+  .eventDetailsContainer {
+    width: 210px;
+    position: relative;
+    gap: 10px;
+    font-size: 1.2rem;
+  }
+  .eventAsisContainer {
+    width: 6.4rem;
+    position: relative;
+    height: 100%;
+  }
+  .asisContainer {
+    height: 7.9rem;
+  }
+}
