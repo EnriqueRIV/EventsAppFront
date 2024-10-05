@@ -78,6 +78,12 @@ const eventMoreInfo = async (eventId) => {
     document.querySelector(
       '.textConfirmation'
     ).innerText = `You must login or register for more Info! 🤪`;
+    document.querySelector('.confirmationButton').innerText = 'Register';
+    document
+      .querySelector('.confirmationButton')
+      .addEventListener('click', () => {
+        Register();
+      });
     return;
   }
 };

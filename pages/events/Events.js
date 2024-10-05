@@ -4,6 +4,7 @@ import { fetchFunction } from '../../utils/fetchFunction';
 import { displayLoader, hideLoader } from '../../components/loader/loader';
 import { prompConfirmation } from '../../components/prompConfirmAttendance/prompConfirmation';
 import { selectFilter } from '../../components/selectfilter/selectfilter';
+import Register from '../register/Register';
 
 const template = () => `
 <article id="events">
@@ -91,6 +92,12 @@ const eventMoreInfo = async (eventId) => {
     document.querySelector(
       '.textConfirmation'
     ).innerText = `You must login or register for more Info! 🤪`;
+    document.querySelector('.confirmationButton').innerText = 'Register';
+    document
+      .querySelector('.confirmationButton')
+      .addEventListener('click', () => {
+        Register();
+      });
     return;
   }
 };
