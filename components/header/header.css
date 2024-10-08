@@ -37,12 +37,14 @@ header {
   position: relative;
 }
 
-#loginLi.display {
+#loginLi.display,
+#registerLi.display {
   display: block;
   visibility: visible;
 }
 
-#loginLi {
+#loginLi,
+#registerLi {
   display: none;
   visibility: hidden;
 }
@@ -83,7 +85,7 @@ header {
 .navLinkMobile {
   display: none;
 }
-@media screen and (width <= 768px) {
+@media screen and (width <= 820px) {
   header {
     font-size: 1.1rem;
   }
@@ -97,7 +99,7 @@ header {
     width: 50px;
   }
 }
-@media screen and (width <= 426px) {
+@media screen and (width <= 610px) {
   .titleH1 {
     display: none;
   }

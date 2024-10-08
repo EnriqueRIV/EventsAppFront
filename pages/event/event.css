@@ -37,7 +37,7 @@
   align-items: center;
   justify-content: space-evenly;
 }
-.updateeventbtn,
+#updateeventbtn,
 #deleteeventbtn {
   max-width: 10%;
   min-width: 75px;

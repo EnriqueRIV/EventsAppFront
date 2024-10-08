@@ -171,5 +171,8 @@
     margin-top: 10px;
   }
 }
-@media screen and (width <= 425px) {
+@media screen and (width <= 493px) {
+  .descriptionContainer {
+    margin-bottom: 1.5rem;
+  }
 }

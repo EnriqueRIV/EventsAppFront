@@ -8,4 +8,6 @@ export const displayUserNavBar = () => {
   UserNavBar();
   const loginLi = document.querySelector('#loginLi');
   loginLi.classList.remove('display');
+  const registerLi = document.querySelector('#registerLi');
+  registerLi.classList.remove('display');
 };

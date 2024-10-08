@@ -16,8 +16,8 @@ const template = () => `
 <div id="attendeeOption">
 
   </div>
-<div class="btnsContainer">
-<button class="updateeventbtn infoBtn">Update Event</button>
+<div id="btnsContainer" class="btnsContainer">
+
 </div>
 </div>
 </article>
@@ -144,6 +144,22 @@ const getEvent = async (eventId) => {
           prompConfirm.remove();
         });
       });
+    }
+    if (
+      JSON.parse(localStorage.getItem('user')).user.userName === event.author ||
+      JSON.parse(localStorage.getItem('user')).user.role === 'admin'
+    ) {
+      const buttonsContainer = document.querySelector('#btnsContainer');
+      const updateButton = document.createElement('button');
+      updateButton.id = 'updateeventbtn';
+      updateButton.className = 'infoBtn';
+      updateButton.textContent = 'Update Event';
+      buttonsContainer.appendChild(updateButton);
+      document
+        .querySelector('#updateeventbtn')
+        .addEventListener('click', () => {
+          UpdateEvent(eventId);
+        });
     }
   } catch (error) {
     console.error('Unexpected Error', error);
@@ -293,9 +309,9 @@ const deleteEvent = async (eventId) => {
 const Event = (eventId) => {
   document.querySelector('.mainSection').innerHTML = template();
   getEvent(eventId);
-  document.querySelector('.updateeventbtn').addEventListener('click', () => {
-    UpdateEvent(eventId);
-  });
+  // document.querySelector('.updateeventbtn').addEventListener('click', () => {
+  //   UpdateEvent(eventId);
+  // });
   deleteButtonAdmin(eventId);
 };
 

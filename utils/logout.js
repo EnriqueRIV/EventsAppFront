@@ -11,6 +11,8 @@ export const logout = (id) => {
     userNavBarDisplay.classList.remove('display');
     const loginLi = document.querySelector('#loginLi');
     loginLi.classList.add('display');
+    const registerLi = document.querySelector('#registerLi');
+    registerLi.classList.add('display');
     Login();
   });
 };

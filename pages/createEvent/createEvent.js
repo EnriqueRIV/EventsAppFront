@@ -41,6 +41,7 @@ const template = () => {
 const createEventSubmit = async () => {
   displayLoader();
   try {
+    const author = JSON.parse(localStorage.getItem('user')).user.userName;
     const title = document.querySelector('#eventname').value;
     const location = document.querySelector('#eventlocation').value;
     const date = document.querySelector('#eventdate').value;
@@ -48,6 +49,7 @@ const createEventSubmit = async () => {
     const imageevent = document.querySelector('#imageevent').files[0];
 
     let formData = new FormData();
+    formData.append('author', author);
     formData.append('title', title);
     formData.append('location', location);
     formData.append('date', date);
