@@ -22,7 +22,7 @@ ${
 const getEvents = async (inputValue) => {
   displayLoader();
   try {
-    const eventData = await fetchFunction('events');
+    const eventData = await fetchFunction('events', 'Get');
     const events = await eventData.json();
     const eventContainer = document.querySelector('#eventsContainer');
     let orderlyEvents = events;

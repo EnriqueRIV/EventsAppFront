@@ -1,5 +1,5 @@
 import { displayLoader, hideLoader } from '../../components/loader/loader';
-import { fetchFunction } from '../../utils/fetchFunction';
+import { fetchFunctionContent } from '../../utils/fetchFunction';
 import { prompConfirmation } from '../../components/prompConfirmAttendance/prompConfirmation';
 import UserProfile from '../userprofile/UserProfile';
 import './allUsers.css';
@@ -17,13 +17,11 @@ const getUsers = async (inputValue) => {
   displayLoader();
   try {
     const token = JSON.parse(localStorage.getItem('user')).token;
-    const userData = await fetchFunction('auth', {
-      method: 'Get',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      }
-    });
+    const userData = await fetchFunctionContent(
+      'auth',
+      `Get`,
+      `Bearer ${token}`
+    );
     const users = await userData.json();
     const userContainer = document.querySelector('#usersContainer');
     let orderlyUsers = users;

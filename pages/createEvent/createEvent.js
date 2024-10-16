@@ -57,13 +57,12 @@ const createEventSubmit = async () => {
     formData.append('imageEvent', imageevent);
 
     const token = JSON.parse(localStorage.getItem('user')).token;
-    const data = await fetchFunction('user/events', {
-      method: 'Post',
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      body: formData
-    });
+    const data = await fetchFunction(
+      'user/events',
+      'Post',
+      `Bearer ${token}`,
+      formData
+    );
     if (data.status === 200) {
       prompConfirmation();
       document.querySelector('.textConfirmation').innerText = `Event created!`;

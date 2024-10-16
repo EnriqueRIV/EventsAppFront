@@ -1,6 +1,6 @@
 import { displayLoader, hideLoader } from '../../components/loader/loader';
 import { prompConfirmation } from '../../components/prompConfirmAttendance/prompConfirmation';
-import { fetchFunction } from '../../utils/fetchFunction';
+import { fetchFunction, fetchFunctionContent } from '../../utils/fetchFunction';
 import Events from '../events/Events';
 import UpdateEvent from '../updateEvent/updateEvent';
 import { deleteUserEvent } from '../userprofile/UserProfile';
@@ -27,13 +27,11 @@ const getEvent = async (eventId) => {
   displayLoader();
   try {
     const token = JSON.parse(localStorage.getItem('user')).token;
-    const eventData = await fetchFunction(`events/${eventId}`, {
-      method: 'Get',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      }
-    });
+    const eventData = await fetchFunctionContent(
+      `events/${eventId}`,
+      'Get',
+      `Bearer ${token}`
+    );
     const event = await eventData.json();
     const eventContainer = document.querySelector('#eventInfoContainer');
     const divImg = document.createElement('div');
@@ -171,13 +169,11 @@ const getEvent = async (eventId) => {
 const getAsis = async (userId) => {
   try {
     const token = JSON.parse(localStorage.getItem('user')).token;
-    const assisData = await fetchFunction(`auth/${userId}`, {
-      method: 'Get',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      }
-    });
+    const assisData = await fetchFunctionContent(
+      `auth/${userId}`,
+      'Get',
+      `Bearer ${token}`
+    );
     const user = await assisData.json();
     const assisContainer = document.querySelector('.asisContainer');
     const liAsis = document.createElement('li');
@@ -196,27 +192,23 @@ const attendanceRegister = async (eventId) => {
     const attende = JSON.parse(localStorage.getItem('user')).user._id;
     const token = JSON.parse(localStorage.getItem('user')).token;
 
-    const data = await fetchFunction(`auth/edit/${attende}`, {
-      method: 'Put',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
+    const data = await fetchFunctionContent(
+      `auth/edit/${attende}`,
+      'Put',
+      `Bearer ${token}`,
+      JSON.stringify({
         events: eventId
       })
-    });
+    );
 
-    const dataEvent = await fetchFunction(`user/attendees/${eventId}`, {
-      method: 'Put',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
+    const dataEvent = await fetchFunctionContent(
+      `user/attendees/${eventId}`,
+      'Put',
+      `Bearer ${token}`,
+      JSON.stringify({
         asis: attende
       })
-    });
+    );
 
     if (dataEvent.status === 200) {
       prompConfirmation();
@@ -252,27 +244,23 @@ const deleteButtonAdmin = (eventId) => {
 
 const deleteEventUser = async (eventId) => {
   const token = JSON.parse(localStorage.getItem('user')).token;
-  const usersData = await fetchFunction('auth', {
-    method: 'Get',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
-    }
-  });
+  const usersData = await fetchFunctionContent(
+    'auth',
+    'Get',
+    `Bearer ${token}`
+  );
   const users = await usersData.json();
   for (let user of users) {
     if (user.events.includes(eventId)) {
       const token = JSON.parse(localStorage.getItem('user')).token;
-      const data = await fetchFunction(`auth/remove/${user._id}`, {
-        method: 'Put',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+      const data = await fetchFunctionContent(
+        `auth/remove/${user._id}`,
+        'Put',
+        `Bearer ${token}`,
+        JSON.stringify({
           events: eventId
         })
-      });
+      );
     }
   }
 };
@@ -281,12 +269,11 @@ const deleteEvent = async (eventId) => {
   displayLoader();
   try {
     const token = JSON.parse(localStorage.getItem('user')).token;
-    const eventDelete = await fetchFunction(`user/events/${eventId}`, {
-      method: 'Delete',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    const eventDelete = await fetchFunction(
+      `user/events/${eventId}`,
+      'Delete',
+      `Bearer ${token}`
+    );
     if (eventDelete.status === 200) {
       prompConfirmation();
       document.querySelector('.textConfirmation').innerText = `Event deleted!`;

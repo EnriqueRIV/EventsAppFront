@@ -58,13 +58,12 @@ const updateEventSubmit = async (eventId) => {
     formData.append('asis', asis);
 
     const token = JSON.parse(localStorage.getItem('user')).token;
-    const data = await fetchFunction(`user/attendees/${eventId}`, {
-      method: 'Put',
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      body: formData
-    });
+    const data = await fetchFunction(
+      `user/attendees/${eventId}`,
+      'Put',
+      `Bearer ${token}`,
+      formData
+    );
 
     if (data.status === 200) {
       prompConfirmation();

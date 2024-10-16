@@ -64,13 +64,12 @@ const updateUserSubmit = async (user_id) => {
     const userId = user_id
       ? user_id
       : JSON.parse(localStorage.getItem('user')).user._id;
-    const data = await fetchFunction(`auth/edit/${userId}`, {
-      method: 'Put',
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      body: formData
-    });
+    const data = await fetchFunction(
+      `auth/edit/${userId}`,
+      'Put',
+      `Bearer ${token}`,
+      formData
+    );
 
     if (data.status === 400) {
       prompConfirmation();

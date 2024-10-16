@@ -1,5 +1,5 @@
 import { displayLoader, hideLoader } from '../../components/loader/loader';
-import { fetchFunction } from '../../utils/fetchFunction';
+import { fetchFunction, fetchFunctionContent } from '../../utils/fetchFunction';
 import { prompConfirmation } from '../../components/prompConfirmAttendance/prompConfirmation';
 import Users from '../allUsers/allUsers';
 import UpdateUser from '../updateUser/updateUser';
@@ -30,13 +30,11 @@ const getUserProfile = async (user_id) => {
     const userId = user_id
       ? user_id
       : JSON.parse(localStorage.getItem('user')).user._id;
-    const userData = await fetchFunction(`auth/${userId}`, {
-      method: 'Get',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      }
-    });
+    const userData = await fetchFunctionContent(
+      `auth/${userId}`,
+      'Get',
+      `Bearer ${token}`
+    );
     const user = await userData.json();
     const profileContainer = document.querySelector('#profileContainer');
     const divAvatar = document.createElement('div');
@@ -90,21 +88,19 @@ const deleteButtonAdmin = (user_id) => {
 };
 
 export const deleteUserEvent = async (user_id) => {
-  const eventData = await fetchFunction('events');
+  const eventData = await fetchFunction('events', 'Get');
   const events = await eventData.json();
   for (let event of events) {
     if (event.asis.includes(user_id)) {
       const token = JSON.parse(localStorage.getItem('user')).token;
-      const dataEvent = await fetchFunction(`user/${event._id}`, {
-        method: 'Put',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+      const dataEvent = await fetchFunctionContent(
+        `user/${event._id}`,
+        'Put',
+        `Bearer ${token}`,
+        JSON.stringify({
           asis: user_id
         })
-      });
+      );
     }
   }
 };
@@ -113,12 +109,11 @@ const deleteUser = async (user_id) => {
   displayLoader();
   try {
     const token = JSON.parse(localStorage.getItem('user')).token;
-    const userDelete = await fetchFunction(`auth/delete/${user_id}`, {
-      method: 'Delete',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    const userDelete = await fetchFunction(
+      `auth/delete/${user_id}`,
+      'Delete',
+      `Bearer ${token}`
+    );
     if (userDelete.status === 200) {
       prompConfirmation();
       document.querySelector('.textConfirmation').innerText = `User deleted!`;

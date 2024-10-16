@@ -59,10 +59,7 @@ const registerSubmit = async () => {
     formData.append('userEmail', useremail);
     formData.append('imageAvatar', imageavatar);
 
-    const data = await fetchFunction('auth/register', {
-      method: 'Post',
-      body: formData
-    });
+    const data = await fetchFunction('auth/register', 'Post', '', formData);
 
     if (data.status === 400) {
       prompConfirmation();

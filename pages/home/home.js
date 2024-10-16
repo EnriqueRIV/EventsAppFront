@@ -35,7 +35,7 @@ ${
 const getMainEvents = async () => {
   displayLoader();
   try {
-    const eventData = await fetchFunction('events');
+    const eventData = await fetchFunction('events', 'Get');
     const events = await eventData.json();
     const orderlyEvents = events
       .slice()

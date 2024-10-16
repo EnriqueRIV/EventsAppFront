@@ -1,5 +1,5 @@
 import './login.css';
-import { fetchFunction } from '../../utils/fetchFunction';
+import { fetchFunctionContent } from '../../utils/fetchFunction';
 import { displayLoader, hideLoader } from '../../components/loader/loader';
 import { prompConfirmation } from '../../components/prompConfirmAttendance/prompConfirmation';
 import { displayUserNavBar } from '../../utils/displayUserNavBar';
@@ -26,16 +26,12 @@ const loginSubmit = async () => {
   try {
     const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
-    const data = await fetchFunction('auth/login', {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'Post',
-      body: JSON.stringify({
-        userName: username,
-        password: password
-      })
-    });
+    const data = await fetchFunctionContent(
+      'auth/login',
+      'Post',
+      '',
+      JSON.stringify({ userName: username, password: password })
+    );
 
     if (data.status === 400) {
       prompConfirmation();
