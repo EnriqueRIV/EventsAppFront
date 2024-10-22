@@ -1,6 +1,6 @@
 import { displayLoader, hideLoader } from '../../components/loader/loader';
 import { prompConfirmation } from '../../components/prompConfirmAttendance/prompConfirmation';
-import { fetchFunction, fetchFunctionContent } from '../../utils/fetchFunction';
+import { fetchFunction } from '../../utils/fetchFunction';
 import Events from '../events/Events';
 import UpdateEvent from '../updateEvent/updateEvent';
 import { deleteUserEvent } from '../userprofile/UserProfile';
@@ -27,10 +27,11 @@ const getEvent = async (eventId) => {
   displayLoader();
   try {
     const token = JSON.parse(localStorage.getItem('user')).token;
-    const eventData = await fetchFunctionContent(
+    const eventData = await fetchFunction(
       `events/${eventId}`,
       'Get',
-      `Bearer ${token}`
+      `Bearer ${token}`,
+      true
     );
     const event = await eventData.json();
     const eventContainer = document.querySelector('#eventInfoContainer');
@@ -169,10 +170,11 @@ const getEvent = async (eventId) => {
 const getAsis = async (userId) => {
   try {
     const token = JSON.parse(localStorage.getItem('user')).token;
-    const assisData = await fetchFunctionContent(
+    const assisData = await fetchFunction(
       `auth/${userId}`,
       'Get',
-      `Bearer ${token}`
+      `Bearer ${token}`,
+      true
     );
     const user = await assisData.json();
     const assisContainer = document.querySelector('.asisContainer');
@@ -192,19 +194,21 @@ const attendanceRegister = async (eventId) => {
     const attende = JSON.parse(localStorage.getItem('user')).user._id;
     const token = JSON.parse(localStorage.getItem('user')).token;
 
-    const data = await fetchFunctionContent(
+    const data = await fetchFunction(
       `auth/edit/${attende}`,
       'Put',
       `Bearer ${token}`,
+      true,
       JSON.stringify({
         events: eventId
       })
     );
 
-    const dataEvent = await fetchFunctionContent(
+    const dataEvent = await fetchFunction(
       `user/attendees/${eventId}`,
       'Put',
       `Bearer ${token}`,
+      true,
       JSON.stringify({
         asis: attende
       })
@@ -244,19 +248,16 @@ const deleteButtonAdmin = (eventId) => {
 
 const deleteEventUser = async (eventId) => {
   const token = JSON.parse(localStorage.getItem('user')).token;
-  const usersData = await fetchFunctionContent(
-    'auth',
-    'Get',
-    `Bearer ${token}`
-  );
+  const usersData = await fetchFunction('auth', 'Get', `Bearer ${token}`, true);
   const users = await usersData.json();
   for (let user of users) {
     if (user.events.includes(eventId)) {
       const token = JSON.parse(localStorage.getItem('user')).token;
-      const data = await fetchFunctionContent(
+      const data = await fetchFunction(
         `auth/remove/${user._id}`,
         'Put',
         `Bearer ${token}`,
+        true,
         JSON.stringify({
           events: eventId
         })
@@ -296,9 +297,6 @@ const deleteEvent = async (eventId) => {
 const Event = (eventId) => {
   document.querySelector('.mainSection').innerHTML = template();
   getEvent(eventId);
-  // document.querySelector('.updateeventbtn').addEventListener('click', () => {
-  //   UpdateEvent(eventId);
-  // });
   deleteButtonAdmin(eventId);
 };
 

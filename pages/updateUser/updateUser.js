@@ -68,6 +68,7 @@ const updateUserSubmit = async (user_id) => {
       `auth/edit/${userId}`,
       'Put',
       `Bearer ${token}`,
+      false,
       formData
     );
 

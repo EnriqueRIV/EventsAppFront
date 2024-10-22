@@ -62,6 +62,7 @@ const updateEventSubmit = async (eventId) => {
       `user/attendees/${eventId}`,
       'Put',
       `Bearer ${token}`,
+      false,
       formData
     );
 

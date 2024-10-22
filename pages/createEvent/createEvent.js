@@ -61,6 +61,7 @@ const createEventSubmit = async () => {
       'user/events',
       'Post',
       `Bearer ${token}`,
+      false,
       formData
     );
     if (data.status === 200) {

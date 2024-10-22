@@ -1,5 +1,5 @@
 import { displayLoader, hideLoader } from '../../components/loader/loader';
-import { fetchFunction, fetchFunctionContent } from '../../utils/fetchFunction';
+import { fetchFunction } from '../../utils/fetchFunction';
 import { prompConfirmation } from '../../components/prompConfirmAttendance/prompConfirmation';
 import Users from '../allUsers/allUsers';
 import UpdateUser from '../updateUser/updateUser';
@@ -30,10 +30,11 @@ const getUserProfile = async (user_id) => {
     const userId = user_id
       ? user_id
       : JSON.parse(localStorage.getItem('user')).user._id;
-    const userData = await fetchFunctionContent(
+    const userData = await fetchFunction(
       `auth/${userId}`,
       'Get',
-      `Bearer ${token}`
+      `Bearer ${token}`,
+      true
     );
     const user = await userData.json();
     const profileContainer = document.querySelector('#profileContainer');
@@ -93,10 +94,11 @@ export const deleteUserEvent = async (user_id) => {
   for (let event of events) {
     if (event.asis.includes(user_id)) {
       const token = JSON.parse(localStorage.getItem('user')).token;
-      const dataEvent = await fetchFunctionContent(
+      const dataEvent = await fetchFunction(
         `user/${event._id}`,
         'Put',
         `Bearer ${token}`,
+        true,
         JSON.stringify({
           asis: user_id
         })
